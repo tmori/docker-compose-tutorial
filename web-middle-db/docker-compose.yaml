@@ -1,0 +1,28 @@
+version: "3"
+services:
+  web:
+    build: .
+    networks:
+      - frontend
+  middle:
+    build: .
+    networks:
+      - frontend
+      - backend
+  db:
+    build: .
+    networks:
+      - backend
+networks:
+  frontend:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 192.168.10.0/24
+  backend:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 192.168.20.0/24
