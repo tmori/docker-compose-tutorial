@@ -1,0 +1,21 @@
+version: "3"
+services:
+  middle:
+    build: .
+    networks:
+      - volume_network
+    volumes:
+      - "./db-data:/data"
+  db:
+    build: .
+    networks:
+      - volume_network
+    volumes:
+      - "./db-data:/data"
+networks:
+  volume_network:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 192.168.30.0/24
